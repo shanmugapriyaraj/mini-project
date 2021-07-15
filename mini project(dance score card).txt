@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+struct dance
+{
+int song,performance,coordination,total;
+char name[100];
+};
+int main(){
+struct dance team[200],t;
+int i,j,n,a,ch;
+printf("\nPress:\n1-for Creating Score card\n2-for Displaying Score card\n3-to exit");
+printf("\nEnter Choice:");
+scanf("%d",&ch);
+while(ch!=3){
+switch(ch){
+case 1:{
+printf("ENTER THE NUMBER OF TEAMS:");
+scanf("%d",&n);
+for(i=1;i<=n;i++){
+printf("Enter the numbers of the participants in the team:");
+scanf("%d",&a);
+}
+printf("        ENTER THE INFORMATION      \n");
+printf("NAME      SONG_SELECTION    PERFORMANCE     COORDINATION\n");
+for(i=0;i<n;i++){
+scanf("%s %d %d %d",&team[i].name,&team[i].song,&team[i].performance,&team[i].coordination);
+team[i].total=team[i].song+team[i].performance+team[i].coordination;
+}
+for(i=0;i<n;i++){
+for(j=0;j<n-1;j++){
+if(team[j].total<team[j+1].total){
+t=team[j];
+team[j]=team[j+1];
+team[j+1]=t;
+}
+}
+}
+break;
+}
+case 2:{
+printf("\n Dancer Info In Terms Of Total Scored From Lowest to Highest\n");
+printf("\n Name\t\t\t Song\t\t\t Performance\t\t\t Coordination\n");
+for(i=0;i<n;i++){
+printf("%s\t\t\t%d\t\t\t%d\t\t\t%d\n",team[i].name,team[i].song,team[i].performance,team[i].coordination);}
+break;
+}
+default:
+break;}
+printf("\nPress:\n1-for Creating Score card\n2-for Displaying Score card\n3-to exit");
+printf("\nEnter Choice:");
+scanf("%d",&ch);
+}
+return 0;
+}
